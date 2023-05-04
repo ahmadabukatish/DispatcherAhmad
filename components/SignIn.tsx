@@ -6,7 +6,7 @@
  */
 
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import {
     SafeAreaView,
   StyleSheet,
@@ -18,8 +18,18 @@ import {
   Image,
 } from 'react-native';
 
-const navigation=useNavigation();
 const Sign=()=>{
+  const navigation=useNavigation();
+  useLayoutEffect(
+    ()=>{
+      navigation.setOptions(
+        {
+          headerTitle:'Sign In',
+          headerShown:false,
+        })
+    }
+  )
+  
   return (
     <SafeAreaView style={styles.container}>
       

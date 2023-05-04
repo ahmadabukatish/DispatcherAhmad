@@ -18,29 +18,22 @@ import {
 import Sign from './components/SignIn';
 import Sign1 from './components/SignUp';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
-const Stack = createStackNavigator();
-function MyStack() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-          <Stack.Screen name={'SignIn'} component={Sign} />
-          <Stack.Screen name={'SignUp'} component={Sign1} />
-      </Stack.Navigator>
-      </NavigationContainer>
-  );
-}
+const Stack = createNativeStackNavigator();
+
 
 function App(){
   return (
+  <NavigationContainer>
     <Stack.Navigator>
-    <Stack.Screen name={'SignIn'} component={Sign} />
-    <Stack.Screen name={'SignUp'} component={Sign1} />
-</Stack.Navigator>
+      <Stack.Screen name={'SignIn'} component={Sign} />
+      <Stack.Screen name={'SignUp'} component={Sign1} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 }
 
