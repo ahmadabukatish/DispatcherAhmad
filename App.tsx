@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import Sign from './components/SignIn';
 import Sign1 from './components/SignUp';
+import Splash1 from './components/Splash';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -30,6 +31,7 @@ function App(){
   return (
   <NavigationContainer>
     <Stack.Navigator>
+    <Stack.Screen name={'Splash'} component={Splash1} />
       <Stack.Screen name={'SignIn'} component={Sign} />
       <Stack.Screen name={'SignUp'} component={Sign1} />
     </Stack.Navigator>
