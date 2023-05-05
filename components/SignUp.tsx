@@ -5,7 +5,8 @@
  * @format
  */
 
-import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React , { useLayoutEffect }from 'react';
 import {
     SafeAreaView,
   StyleSheet,
@@ -19,10 +20,21 @@ import {
 
 
 const Sign1=()=>{
+  
+  const navigation=useNavigation();
+  useLayoutEffect(
+    ()=>{
+      navigation.setOptions(
+        {
+          headerTitle:'Sign Up',
+          headerShown:false,
+        })
+    }
+  )
   return (
     <SafeAreaView style={styles.container}>
       
-    <Image source={require('../images/logo.png')} style={{alignSelf:'center',width:126.91,height:128,marginTop:61}}/>
+    <Image source={require('../images/logo1.png')} style={{alignSelf:'center',width:126.91,height:128,marginTop:61}}/>
      <View style={styles.background}>
         <Text style={styles.signup}>Signup</Text>
         <View style={styles.textInputBackground}>

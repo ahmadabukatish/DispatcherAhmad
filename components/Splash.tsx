@@ -35,7 +35,7 @@ const Splash1=()=>{
         } style={styles.container}>
     <SafeAreaView style={styles.container}>
    
-    <Image source={require('../images/logo.png')}
+    <Image source={require('../images/logo1.png')}
      style={{alignSelf:'center',width:126.91,height:128,marginTop:61}}/>
      <Text style={{top:440,fontWeight:700,alignSelf:'center'
     ,color:'white',fontSize:32}}>Dispatcher</Text>
