@@ -17,7 +17,23 @@ import {
   Pressable,
   Image,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
 
+
+const logInRegisteredUser=(email:string,password:string)=>{
+  const navigation=useNavigation();
+  auth().signInWithEmailAndPassword(email, 'PassowrdAdmin111')
+   .then(() => {
+       console.log('Usercreated & signed in!');
+       navigation.navigate('Home');
+
+   })
+   .catch(error => {
+       if (error.code === 'auth/invalid-email') console.log('That email address is invalid!');
+       console.error(error);
+   });
+
+}
 const Sign=()=>{
   const navigation=useNavigation();
   const[username,setUsername]=useState('')
@@ -50,7 +66,20 @@ const Sign=()=>{
             <Image source={require('../images/Vector.png')} style={{marginLeft:200,width:30,height:19}}/>
             <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
         </View>
-        <Pressable style={styles.loginButtun}>
+        <Pressable style={styles.loginButtun} onPress={()=>
+          {
+            auth().signInWithEmailAndPassword(username, 'PassowrdAdmin111')
+             .then(() => {
+                 console.log('Usercreated & signed in!');
+                 navigation.navigate('HomePage');
+          
+             })
+             .catch(error => {
+                 if (error.code === 'auth/invalid-email') console.log('That email address is invalid!');
+                 console.error(error);
+             });
+
+          }}>
           <Text style={{color:'white'}}>LOGIN</Text>
           <Image source={require('../images/Stroke.png')} style={{marginLeft:3,width:16,height:12}}/>
 
