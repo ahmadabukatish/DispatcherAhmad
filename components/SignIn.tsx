@@ -67,6 +67,8 @@ const Sign=()=>{
             <Image source={require('../images/Vector.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
             <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
         </View>
+        <Image source={require('../images/Line2.png')} style={{position:'absolute',marginLeft:20,marginRight:20,width:335,marginTop:247}}/>
+
         <Pressable style={styles.loginButtun} onPress={()=>
           {
             authService.login(username,password);
@@ -109,10 +111,10 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: '700',
     fontSize: 24,
-    lineHeight: 22,
+    lineHeight: 25,
     color:'#5A5A89',
     width:93,
-    height:22,
+    height:28,
     marginTop:40,
     marginLeft:20,
   },
@@ -188,7 +190,7 @@ signupButtun:
   display:'flex',
   flexDirection:'row',
   backgroundColor:"#F1F1F9",
-  marginTop:28.75,
+  marginTop:20,
   marginLeft:20,
   marginRight:20,
   alignItems:'center',
