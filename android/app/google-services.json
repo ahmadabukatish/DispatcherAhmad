@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "311676408122",
+    "project_id": "dispatcherahmad",
+    "storage_bucket": "dispatcherahmad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311676408122:android:f2876f4969a2e518fb8003",
+        "android_client_info": {
+          "package_name": "com.dispatcherahmad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311676408122-j09847j47cs6odfiiqb77ev0usihpfr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ12tEtWoQn2n5fw7VR4a7rV3XTUXyRmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311676408122-j09847j47cs6odfiiqb77ev0usihpfr2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

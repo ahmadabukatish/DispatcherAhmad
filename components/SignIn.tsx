@@ -6,7 +6,7 @@
  */
 
 import { useNavigation } from '@react-navigation/native';
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import {
     SafeAreaView,
   StyleSheet,
@@ -20,6 +20,9 @@ import {
 
 const Sign=()=>{
   const navigation=useNavigation();
+  const[username,setUsername]=useState('')
+  const[password,setPassword]=useState('')
+
   useLayoutEffect(
     ()=>{
       navigation.setOptions(
@@ -33,14 +36,17 @@ const Sign=()=>{
   return (
     <SafeAreaView style={styles.container}>
       
-    <Image source={require('../images/logo.png')} style={{alignSelf:'center',width:126.91,height:128,marginTop:61}}/>
+    <Image source={require('../images/logo1.png')} style={{alignSelf:'center',width:126.91,height:128,marginTop:61}}/>
      <View style={styles.background}>
         <Text style={styles.logIn}>Login </Text>
         <View style={styles.textInputBackground}>
-            <TextInput style={styles.textInput} placeholder='your email' ></TextInput>
+            <TextInput style={styles.textInput} placeholder='your email' value={username}
+             onChangeText={text=>setUsername(text) }/>
         </View>
         <View style={styles.passwordBackground}>
-            <TextInput style={styles.textInput} placeholder='Password' ></TextInput>
+            <TextInput style={styles.textInput} placeholder='Password'
+            value={password} secureTextEntry={true}
+            onChangeText={text=>setPassword(text)} />
             <Image source={require('../images/Vector.png')} style={{marginLeft:200,width:30,height:19}}/>
             <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
         </View>
@@ -114,7 +120,7 @@ textInput:
     fontFamily: 'roboto',
     fontStyle: 'normal',
     alignItems: 'center',
-    color: 'white',
+    color: 'black',
 },
 passwordBackground:
 {

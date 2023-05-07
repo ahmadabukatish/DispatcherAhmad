@@ -6,22 +6,37 @@
  */
 
 import { useNavigation } from '@react-navigation/native';
-import React , { useLayoutEffect }from 'react';
+import React , {useState, useLayoutEffect }from 'react';
 import {
     SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  Pressable,
-  Image,
+    StyleSheet,
+    Text,
+    View,
+    TextInput,
+    Pressable,
+    Image,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
 
 
+const registerNewEmail=(email:string,password:string)=>{
+  auth().createUserWithEmailAndPassword(email,'PassowrdAdmin111')
+  .then(() => {
+      console.log('User created & signed in!');
+  })   
+  .catch((error) => {
+      if (error.code === 'auth/email-already-in-use') 
+          console.log('That email address is already in use!');
+      if (error.code === 'auth/invalid-email') 
+          console.log('That email address is invalid!');
+      console.error(error);
+  });
+}
 const Sign1=()=>{
   
   const navigation=useNavigation();
+    const[email,setEmail]=useState('')
+  const[password,setPassword]=useState('')
   useLayoutEffect(
     ()=>{
       navigation.setOptions(
@@ -31,6 +46,7 @@ const Sign1=()=>{
         })
     }
   )
+  
   return (
     <SafeAreaView style={styles.container}>
       
@@ -38,29 +54,26 @@ const Sign1=()=>{
      <View style={styles.background}>
         <Text style={styles.signup}>Signup</Text>
         <View style={styles.textInputBackground}>
-            <TextInput style={styles.textInput} placeholder='your email' ></TextInput>
+            <TextInput style={styles.textInput} placeholder='your email' value={email}
+             onChangeText={text=>setEmail(text) }/>
         </View>
         <View style={styles.passwordBackground}>
-            <TextInput style={styles.textInput} placeholder='Password' ></TextInput>
+            <TextInput style={styles.textInput} placeholder='Password' secureTextEntry={true}></TextInput>
             <Image source={require('../images/Vector.png')} style={{marginLeft:200,width:30,height:19}}/>
             <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
         </View>
         <View style={styles.reEnterPasswordBackground}>
-            <TextInput style={styles.textInput} placeholder='Re-Enter Password' ></TextInput>
-            <Image source={require('../images/Vector.png')} style={{marginLeft:143,width:30,height:19}}/>
+            <TextInput style={styles.textInput} placeholder='Re-Enter Password' secureTextEntry={true} ></TextInput>
+            <Image source={require('../images/Vector.png')} style={{marginLeft:120,width:30,height:19}}/>
             <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
         </View>
-        <Pressable style={styles.signupButtun}>
+        <Pressable style={styles.signupButtun} onPress={()=>{
+      
+      registerNewEmail(email,password);
+        }
+        }>
           <Text style={{color:'white'}}>SIGNUP</Text>
           <Image source={require('../images/Stroke2.png')} style={{marginLeft:3,width:16,height:12}}/>
-
-          {/* <Image
-        style={styles.loginImage}
-        source={{
-          uri: 'https://cdn-icons-png.flaticon.com/512/3916/3916800.png',
-        }
-      }
-      /> */}
         </Pressable>
         <Pressable style={styles.loginButtun}>
           <Text>LOGIN</Text>
@@ -125,7 +138,7 @@ textInput:
     fontFamily: 'roboto',
     fontStyle: 'normal',
     alignItems: 'center',
-    color: 'white',
+    color: 'black',
 },
 passwordBackground:
 {
