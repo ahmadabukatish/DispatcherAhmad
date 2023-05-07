@@ -17,6 +17,7 @@ import {
     Image,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import { authService } from '../firebase/AuthService';
 
 
 const registerNewEmail=(email:string,password:string)=>{
@@ -68,8 +69,7 @@ const Sign1=()=>{
             <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
         </View>
         <Pressable style={styles.signupButtun} onPress={()=>{
-      
-      registerNewEmail(email,password);
+      authService.register(email,password);
         }
         }>
           <Text style={{color:'white'}}>SIGNUP</Text>

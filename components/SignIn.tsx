@@ -18,6 +18,7 @@ import {
   Image,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import { authService } from '../firebase/AuthService';
 
 
 const logInRegisteredUser=(email:string,password:string)=>{
@@ -68,17 +69,7 @@ const Sign=()=>{
         </View>
         <Pressable style={styles.loginButtun} onPress={()=>
           {
-            auth().signInWithEmailAndPassword(username, 'PassowrdAdmin111')
-             .then(() => {
-                 console.log('Usercreated & signed in!');
-                 navigation.navigate('HomePage');
-          
-             })
-             .catch(error => {
-                 if (error.code === 'auth/invalid-email') console.log('That email address is invalid!');
-                 console.error(error);
-             });
-
+            authService.login(username,password);
           }}>
           <Text style={{color:'white'}}>LOGIN</Text>
           <Image source={require('../images/Stroke.png')} style={{marginLeft:3,width:16,height:12}}/>
