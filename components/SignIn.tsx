@@ -64,7 +64,7 @@ const Sign=()=>{
             <TextInput style={styles.textInput} placeholder='Password'
             value={password} secureTextEntry={true}
             onChangeText={text=>setPassword(text)} />
-            <Image source={require('../images/Vector.png')} style={{marginLeft:200,width:30,height:19}}/>
+            <Image source={require('../images/Vector.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
             <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
         </View>
         <Pressable style={styles.loginButtun} onPress={()=>

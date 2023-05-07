@@ -60,18 +60,19 @@ const Sign1=()=>{
         </View>
         <View style={styles.passwordBackground}>
             <TextInput style={styles.textInput} placeholder='Password' secureTextEntry={true}></TextInput>
-            <Image source={require('../images/Vector.png')} style={{marginLeft:200,width:30,height:19}}/>
+            <Image source={require('../images/Vector.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
             <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
         </View>
         <View style={styles.reEnterPasswordBackground}>
             <TextInput style={styles.textInput} placeholder='Re-Enter Password' secureTextEntry={true} ></TextInput>
-            <Image source={require('../images/Vector.png')} style={{marginLeft:120,width:30,height:19}}/>
+            <Image source={require('../images/Vector.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
             <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
         </View>
-        <Pressable style={styles.signupButtun} onPress={()=>{
-      authService.register(email,password);
-        }
-        }>
+        <Pressable style={styles.signupButtun} 
+          onPress={()=>
+            {
+          authService.register(email,password); }
+            }>
           <Text style={{color:'white'}}>SIGNUP</Text>
           <Image source={require('../images/Stroke2.png')} style={{marginLeft:3,width:16,height:12}}/>
         </Pressable>
