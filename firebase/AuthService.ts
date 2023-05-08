@@ -12,19 +12,58 @@ class AuthService {
                console.error(error)
            })
    }
+   private validateEmail(input:string)
+   {
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (input.match(validRegex)) {
+  
+      return input;
+  
+    } else {
+  
+        
+        throw new Error('invalid email');
+  
+    }
+   }
+   private validatePassword(input:string)
+   {
+
+    if (input!='') {
+  
+      return input;
+  
+    } else {
+  
+        
+        throw new Error('password can`t be blank');
+  
+    }
+   }
+   private validateRePassword(pass1:string,pass2:string)
+   {
+    if (pass1!==pass2) {
+  
+      if (pass2=='')
+    {
+        throw new Error('please re-enter the password')
+    } 
+    else
+    {   
+        throw new Error('the password doesn`t match');
+  
+    }
+   }
+}
    public logout() {
        this.auth.signOut().then(() => console.log('User is now signed out'))
    }
-   public register (email: string, password: string) {
-       this.auth.createUserWithEmailAndPassword(email, "password123P").then(() => {
-               console.log('Usercreated & signed in !')
-           }).catch(error => {
-               if (error.code === 'auth/email-already-in-use')
-                   console.log('That email address is already in use!')
-               if (error.code === 'auth/invalid-email')
-                   console.log('That email address is invalid!')
-               console.error(error)
-           })
+   public register (email: string, password: string,password2:string): Promise<FirebaseAuthTypes.UserCredential> {
+        this.validateRePassword(password,password2);
+        return this.auth.createUserWithEmailAndPassword(this.validateEmail(email), this.validatePassword(password));
+ 
+      
    }
 }
 export const authService = new AuthService()

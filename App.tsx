@@ -21,15 +21,14 @@ import Splash1 from './components/Splash';
 import Home from './components/HomePage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import { Provider } from 'react-redux'
+import store from './store/store'
 const Stack = createNativeStackNavigator();
 
 
 function App(){
   return (
+<Provider store={store}>
   <NavigationContainer>
     <Stack.Navigator>
     <Stack.Screen name={'Splash'} component={Splash1} />
@@ -39,6 +38,7 @@ function App(){
 
     </Stack.Navigator>
   </NavigationContainer>
+  </Provider>
   );
 }
 

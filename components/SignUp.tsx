@@ -15,29 +15,20 @@ import {
     TextInput,
     Pressable,
     Image,
+    TouchableOpacity,Alert,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { authService } from '../firebase/AuthService';
 
 
-const registerNewEmail=(email:string,password:string)=>{
-  auth().createUserWithEmailAndPassword(email,'PassowrdAdmin111')
-  .then(() => {
-      console.log('User created & signed in!');
-  })   
-  .catch((error) => {
-      if (error.code === 'auth/email-already-in-use') 
-          console.log('That email address is already in use!');
-      if (error.code === 'auth/invalid-email') 
-          console.log('That email address is invalid!');
-      console.error(error);
-  });
-}
 const Sign1=()=>{
-  
   const navigation=useNavigation();
-    const[email,setEmail]=useState('')
+  const[email,setEmail]=useState('')
   const[password,setPassword]=useState('')
+  const[scurePassword,setScurePassword]=useState(true)
+
+  const[reEnterPassword,setReEnterPassword]=useState('')
+
   useLayoutEffect(
     ()=>{
       navigation.setOptions(
@@ -59,21 +50,40 @@ const Sign1=()=>{
              onChangeText={text=>setEmail(text) }/>
         </View>
         <View style={styles.passwordBackground}>
-            <TextInput style={styles.textInput} placeholder='Password' secureTextEntry={true}></TextInput>
-            <Image source={require('../images/Vector.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
-            <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
+            <TextInput style={styles.textInput} placeholder='Password' secureTextEntry={scurePassword}  value={password}
+             onChangeText={text=>setPassword(text) }/>
+             <TouchableOpacity onPress={()=>setScurePassword(!scurePassword)}>
+            <Image source={require('../images/Vector.png')} style={{position:'absolute',marginLeft:195,width:30,height:19}}/>
+            <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:195,width:30,height:19} }/>
+            </TouchableOpacity>
         </View>
         <View style={styles.reEnterPasswordBackground}>
-            <TextInput style={styles.textInput} placeholder='Re-Enter Password' secureTextEntry={true} ></TextInput>
+            <TextInput style={styles.textInput} placeholder='Re-Enter Password' secureTextEntry={true}  value={reEnterPassword}
+             onChangeText={text=>setReEnterPassword(text) }/>
             <Image source={require('../images/Vector.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
             <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:295,width:30,height:19}}/>
         </View>
         <Image source={require('../images/Line2.png')} style={{position:'absolute',marginLeft:20,marginRight:20,width:335,marginTop:320}}/>
 
         <Pressable style={styles.signupButtun} 
-          onPress={()=>
+          onPress={async ()=>
             {
-          authService.register(email,password); }
+          try{
+           const user = await authService.register(email,password,reEnterPassword);
+           console.log(user);
+          }
+          catch(e:any)
+          {
+            Alert.alert('Invalid Email', e.message, [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ]);
+          }
+         }
             }>
           <Text style={{color:'white'}}>SIGNUP</Text>
           <Image source={require('../images/Stroke2.png')} style={{marginLeft:3,width:16,height:12}}/>
@@ -145,6 +155,7 @@ textInput:
 },
 passwordBackground:
 {
+  
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
