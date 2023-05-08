@@ -4,14 +4,7 @@ class AuthService {
    constructor() {
        this.auth = firebase.auth()
    }
-   public login (email: string, password: string) {
-       this.auth.signInWithEmailAndPassword(email, password).then(() => {
-               console.log('User created & signed in!')
-           }).catch(error => {
-               if (error.code === 'auth/invalid-email') console.log('Email address is invalid!')
-               console.error(error)
-           })
-   }
+
    private validateEmail(input:string)
    {
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -56,6 +49,9 @@ class AuthService {
     }
    }
 }
+    public login (email: string, password: string): Promise<FirebaseAuthTypes.UserCredential> {
+        return this.auth.signInWithEmailAndPassword(this.validateEmail(email), this.validatePassword(password));
+    }
    public logout() {
        this.auth.signOut().then(() => console.log('User is now signed out'))
    }

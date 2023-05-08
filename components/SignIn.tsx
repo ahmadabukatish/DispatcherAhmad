@@ -16,6 +16,8 @@ import {
   Button,
   Pressable,
   Image,
+  Alert,
+
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { authService } from '../firebase/AuthService';
@@ -57,8 +59,23 @@ const Sign=()=>{
 
         <Pressable style={styles.loginButtun} onPress={()=>
           {
+            try{
             authService.login(username,password);
-            navigation.navigate('HomePage');
+            navigation.navigate('HomePage');}
+            catch(e:any){
+              {
+                Alert.alert('Error', e.message, [
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  },
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ]);
+              }
+
+            }
+            ;
           }}>
           <Text style={{color:'white'}}>LOGIN</Text>
           <Image source={require('../images/Stroke.png')} style={{marginLeft:3,width:16,height:12}}/>
