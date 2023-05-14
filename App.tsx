@@ -31,7 +31,8 @@ function App(){
 <Provider store={store}>
   <NavigationContainer>
     <Stack.Navigator>
-    <Stack.Screen name={'Splash'} component={Splash1} />
+
+    {/* <Stack.Screen name={'Splash'} component={Splash1} /> */}
       <Stack.Screen name={'SignIn'} component={Sign} />
       <Stack.Screen name={'SignUp'} component={Sign1} />
       <Stack.Screen name={'HomePage'} component={Home} />

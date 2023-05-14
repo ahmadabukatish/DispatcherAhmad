@@ -6,44 +6,67 @@
  */
 
 import { useNavigation } from '@react-navigation/native';
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect ,useEffect} from 'react';
 import {
-    SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  Pressable,
   Image,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Splash1 from './Splash';
-import Sign from './SignIn';
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+import FavoriteScreen from './profileTabs/FovoriteTab';
+import ProfileScreen from './profileTabs/ProfileTab';
+import HomeScreen from './profileTabs/HomeTab';
 
 const Tab = createBottomTabNavigator();
-
 export default function Home() {
+  const navigation=useNavigation();
+  useLayoutEffect(
+    ()=>{
+      navigation.setOptions(
+        {
+          headerTitle:'Sign In',
+          headerShown:false,
+        })
+    }
+  )
   return (
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Navigator  tabBarOptions={{
+        activeTintColor: 'white',
+        activeBackgroundColor: '#262146',
+        inactiveBackgroundColor: '#262146',
+            style: {
+                  backgroundColor: 'white',
+                  paddingBottom: 3
+            }
+     }}>
+      <Tab.Screen name="ProfileTab" component={ProfileScreen} 
+         options={{
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require('../images/profile2.png')                  
+              }/>
+         ), 
+         tabBarLabel: ''             
+        }}/>
+        <Tab.Screen name="HomeTab" component={HomeScreen}
+         options={{
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require('../images/homeTab.png')                  
+              }/>
+         ), 
+         tabBarLabel: ''             
+        }}/>
+       
+        
+         <Tab.Screen name="FavoriteTab" component={FavoriteScreen}
+         options={{
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require('../images/favoriteTab.png')                  
+              }/>
+         ), 
+         tabBarLabel: ''             
+        }} />
+
       </Tab.Navigator>
   );
 }

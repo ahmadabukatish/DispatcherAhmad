@@ -13,19 +13,20 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   Pressable,
   Image,
   Alert,
-
 } from 'react-native';
-import auth from '@react-native-firebase/auth';
 import { authService } from '../firebase/AuthService';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { login, update } from '../store/emailSlice'
 
 const Sign=()=>{
+  const isLogin = useSelector(state => state.email.isLogin);
+  const email = useSelector(state => state.email.email);
+
+  const dispatch = useDispatch()
   const navigation=useNavigation();
-  const[username,setUsername]=useState('')
   const[password,setPassword]=useState('')
 
   useLayoutEffect(
@@ -45,8 +46,8 @@ const Sign=()=>{
      <View style={styles.background}>
         <Text style={styles.logIn}>Login </Text>
         <View style={styles.textInputBackground}>
-            <TextInput style={styles.textInput} placeholder='your email' value={username}
-             onChangeText={text=>setUsername(text) }/>
+            <TextInput style={styles.textInput} placeholder='your email' value={email}
+             onChangeText={text=>dispatch(update(text))}/>
         </View>
         <View style={styles.passwordBackground}>
             <TextInput style={styles.textInput} placeholder='Password'
@@ -60,8 +61,10 @@ const Sign=()=>{
         <Pressable style={styles.loginButtun} onPress={()=>
           {
             try{
-            authService.login(username,password);
-            navigation.navigate('HomePage');}
+            authService.login(email,password);
+            navigation.navigate('HomePage');
+            dispatch(login());
+          }
             catch(e:any){
               {
                 Alert.alert('Error', e.message, [

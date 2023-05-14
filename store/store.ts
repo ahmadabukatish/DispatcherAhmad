@@ -1,13 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // import exampleSlice from 'redux-toolkit/slices;
+import emailReducer from './emailSlice'
+import newsSliceReducer from './newsSlice';
 
 const store = configureStore({
 
 reducer: {
-
-// example: exampleSlice,
-
+email:emailReducer,
+news:newsSliceReducer,
 },
 
 });
