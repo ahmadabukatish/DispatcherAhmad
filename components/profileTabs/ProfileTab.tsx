@@ -19,7 +19,6 @@ function MyProfile() {
     const navigation=useNavigation();
     const dispatch = useDispatch()
     const name = useSelector(state => state.email.name);
-  
     useLayoutEffect(
       ()=>{
         navigation.setOptions(
@@ -35,9 +34,11 @@ function MyProfile() {
   
       <View style={{ flex: 1 }}>
         
-      <View style={{width:'100%',height:80,backgroundColor:'white',}}>
+      <View style={{flexDirection:'row',display:'flex',width:'100%',height:80,backgroundColor:'white',}}>
       <Text style={{
+
           fontFamily:'Roboto',
+          display:'flex',
         width:343,
         height:32,
         marginLeft:16,
@@ -46,9 +47,10 @@ function MyProfile() {
         fontSize:24,
         color:'#262146',
         lineHeight:32,}} >Hi {name}</Text>
-        <Image source={require('../../images/profileBackground.png')} style={{position:'absolute',right:21,top:15}}/>
-  
-        <Image source={require('../../images/profileIcon.png')} style={{position:'absolute',right:33,top:23}}/>
+     <Image source={require('../../images/profileBackground.png')} style={{top:5,right:30,display:'flex',
+}}/>
+    <Image source={require('../../images/profileIcon.png')} style={{right:65,top:15,display:'flex',
+}}/>
   <Pressable onPress={
     ()=>
     {
@@ -59,21 +61,20 @@ function MyProfile() {
           fontFamily:'Roboto',
         width:343,
         height:32,
-        marginLeft:16,
         fontSize:14,
+        right:420,
+        top:40,
         color:'#575565',
         lineHeight:32,}} >edit my profile</Text>
         </Pressable>
         </View>
-        
-           <Pressable >
-           <Image source={require('../../images/settingIcon.png')} style={{position:'absolute',marginLeft:20,marginRight:20,top:15}}/>
+           <Pressable  style={{flexDirection:'row'}} >
+           <Image source={require('../../images/settingIcon.png')} style={{marginLeft:20,marginRight:20,top:15}}/>
   
         <Text style={{
           fontFamily:'Roboto',
         width:264,
         height:32,
-        marginLeft:50,
         fontSize:16,
         color:'#262146',
         top:10,
@@ -82,14 +83,13 @@ function MyProfile() {
       </Pressable>
       <Image source={require('../../images/Line2.png')} style={{marginLeft:20,marginRight:20,width:335,marginTop:15}}/>
   
-      <Pressable >
-      <Image source={require('../../images/termsIcon.png')} style={{position:'absolute',marginLeft:20,marginRight:20,marginTop:8}}/>
+      <Pressable style={{flexDirection:'row'}}>
+      <Image source={require('../../images/termsIcon.png')} style={{marginLeft:20,marginRight:20,marginTop:8}}/>
   
         <Text 
         style={{fontFamily:'Roboto',
         width:264,
         height:32,
-        marginLeft:50,
         fontSize:16,
         color:'#262146',
         lineHeight:32,}} 
@@ -98,7 +98,7 @@ function MyProfile() {
       </Pressable>
       <Image source={require('../../images/Line2.png')} style={{marginLeft:20,marginRight:20,width:335,marginTop:8}}/>
   
-            <Pressable onPress={()=>
+      <Pressable style={{flexDirection:'row'}} onPress={()=>
         {
           try{
           authService.logout();
@@ -116,22 +116,18 @@ function MyProfile() {
                 {text: 'OK', onPress: () => console.log('OK Pressed')},
               ]);
             }
-          }
-          ;
+          };
         }}>
-        <Image source={require('../../images/logoutIcon1.png')} style={{position:'absolute',marginLeft:20,marginRight:20,marginTop:8}}/>
+        <Image source={require('../../images/logoutIcon1.png')} style={{marginLeft:20,marginRight:20,marginTop:8}}/>
         <Image source={require('../../images/logoutIcon2.png')} style={{position:'absolute',marginLeft:28,marginRight:20,marginTop:13}}/>
-  
         <Text 
         style={{fontFamily:'Roboto',
         width:264,
         height:32,
-        marginLeft:50,
         fontSize:16,
         color:'#262146',
         lineHeight:32,}} 
         >Logout</Text>
-  
       </Pressable>
       </View>
   
