@@ -14,7 +14,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Profile from '../Profile';
 import EditProf2 from '../EditProfile2';
 
-
+import Terms from '../Terms';
+import Settings from '../Settings';
 function MyProfile() {
     const navigation=useNavigation();
     const dispatch = useDispatch()
@@ -30,15 +31,12 @@ function MyProfile() {
     )
     return (
   
-      
-  
       <View style={{ flex: 1 }}>
         
       <View style={{flexDirection:'row',display:'flex',width:'100%',height:80,backgroundColor:'white',}}>
       <Text style={{
 
           fontFamily:'Roboto',
-          display:'flex',
         width:343,
         height:32,
         marginLeft:16,
@@ -47,9 +45,9 @@ function MyProfile() {
         fontSize:24,
         color:'#262146',
         lineHeight:32,}} >Hi {name}</Text>
-     <Image source={require('../../images/profileBackground.png')} style={{top:5,right:30,display:'flex',
+     <Image source={require('../../images/profileBackground.png')} style={{top:5,right:30,
 }}/>
-    <Image source={require('../../images/profileIcon.png')} style={{right:65,top:15,display:'flex',
+    <Image source={require('../../images/profileIcon.png')} style={{right:65,top:15,
 }}/>
   <Pressable onPress={
     ()=>
@@ -68,7 +66,11 @@ function MyProfile() {
         lineHeight:32,}} >edit my profile</Text>
         </Pressable>
         </View>
-           <Pressable  style={{flexDirection:'row'}} >
+           <Pressable  style={{flexDirection:'row'}} onPress={()=>
+        {
+          navigation.navigate('Terms');
+        
+        }} >
            <Image source={require('../../images/settingIcon.png')} style={{marginLeft:20,marginRight:20,top:15}}/>
   
         <Text style={{
@@ -83,7 +85,11 @@ function MyProfile() {
       </Pressable>
       <Image source={require('../../images/Line2.png')} style={{marginLeft:20,marginRight:20,width:335,marginTop:15}}/>
   
-      <Pressable style={{flexDirection:'row'}}>
+      <Pressable style={{flexDirection:'row'}} onPress={()=>
+        {
+          navigation.navigate('Terms');
+        
+        }}>
       <Image source={require('../../images/termsIcon.png')} style={{marginLeft:20,marginRight:20,marginTop:8}}/>
   
         <Text 
@@ -145,7 +151,9 @@ function MyProfile() {
       <Stack1.Screen name={'MainProfile'} component={MyProfile} />
       <Stack1.Screen name={'Profile'} component={Profile} />
       <Stack1.Screen name={'Edit2'} component={EditProf2} />
-  
+      <Stack1.Screen name={'Terms'} component={Terms} />
+      <Stack1.Screen name={'Settings'} component={Settings} />
+
       </Stack1.Navigator>
     
     );

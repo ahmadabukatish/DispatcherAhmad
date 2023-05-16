@@ -30,7 +30,7 @@ export default function Home() {
   return (
       <Tab.Navigator  tabBarOptions={{
         activeTintColor: 'white',
-        activeBackgroundColor: '#262146',
+        activeBackgroundColor: '#262160',
         inactiveBackgroundColor: '#262146',
             style: {
                   backgroundColor: 'white',
@@ -41,7 +41,7 @@ export default function Home() {
          options={{
           tabBarIcon: ({ color }) => (
             <Image
-              source={require('../images/profile2.png')                  
+              source={require('../images/profileTab.png')                  
               }/>
          ), 
          tabBarLabel: ''             

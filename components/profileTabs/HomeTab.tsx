@@ -3,7 +3,7 @@
 import React, { useLayoutEffect ,useEffect} from 'react';
 import {
   Text,
-  View,Image,StyleSheet,SafeAreaView,ScrollView,StatusBar,FlatList,
+  View,Image,StyleSheet,StatusBar,FlatList,
 
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,9 +11,7 @@ import {getPosts} from '../../store/newsSlice';
 
 
 const HomeScreen=()=> {
-    const email = useSelector(state => state.email.value);
     const articles=useSelector(state=>state.news.articles);
-    const loading=useSelector(state=>state.news.loading);
     const dispatch=useDispatch();
     useEffect(()=>{
       dispatch(getPosts());
