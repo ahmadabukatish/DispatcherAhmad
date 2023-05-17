@@ -8,7 +8,7 @@ import {
 
 
 function Settings() {
-    const navigation=useNavigation();
+    const navigation=useNavigation<any>();
     useLayoutEffect(
       ()=>{
         navigation.setOptions(
@@ -25,10 +25,10 @@ function Settings() {
                 navigation.navigate('MainProfile');
             }}>
         <Image source={require('../images/ForwardIcon.png')} style={{marginTop:15,}}/>
-        <Text style={{color:'white',marginTop:15,fontWeight:400,fontSize:16}}> Back</Text>
+        <Text style={{color:'white',marginTop:15,fontSize:16}}> Back</Text>
 
         </Pressable>
-        <Text style={{width:343,height:32,fontWeight:500,fontSize:24,color:'#262146',marginLeft:16,}}>Settings</Text>
+        <Text style={{width:343,height:32,fontSize:24,color:'#262146',marginLeft:16,}}>Settings</Text>
 
       </ScrollView>
   

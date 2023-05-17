@@ -1,25 +1,31 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useLayoutEffect ,useEffect} from 'react';
+import React, { useLayoutEffect} from 'react';
 import {
   Text,
   View,
   Pressable,
-  Image,Alert,
+  Image,Alert,Dimensions,
 } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSelector, useDispatch } from 'react-redux'
 import { authService } from '../../firebase/AuthService';
 import { logout } from '../../store/emailSlice';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Profile from '../Profile';
 import EditProf2 from '../EditProfile2';
-
 import Terms from '../Terms';
 import Settings from '../Settings';
+
+
+const { width, height } = Dimensions.get('window');
+const guidelineBaseWidth = 375;
+const guidelineBaseHeight = 667;
+const widthScale = (size:number) => (width / guidelineBaseWidth) * size;
+const heightScale = (size:number) => (height / guidelineBaseHeight) * size;
+const moderateScale = (size:number, factor = 0.5) => size + (widthScale(size) - size) * factor;
 function MyProfile() {
-    const navigation=useNavigation();
+    const navigation=useNavigation<any>();
     const dispatch = useDispatch()
-    const name = useSelector(state => state.email.name);
+    const name = useSelector((state:{email:any}) => state.email.name);
     useLayoutEffect(
       ()=>{
         navigation.setOptions(
@@ -29,59 +35,62 @@ function MyProfile() {
           })
       }
     )
+
     return (
   
       <View style={{ flex: 1 }}>
         
-      <View style={{flexDirection:'row',display:'flex',width:'100%',height:80,backgroundColor:'white',}}>
+      <View style={{flexDirection:'row',display:'flex',width:widthScale(375),height:heightScale(79),backgroundColor:'white',}}>
+      <View style={{flex:1}}>
       <Text style={{
-
-          fontFamily:'Roboto',
-        width:343,
-        height:32,
-        marginLeft:16,
-        marginTop:15,
+        fontFamily:'Roboto',
+        width:widthScale(343),
+        height:heightScale(32),
+        marginLeft:widthScale(16),
+        marginTop:heightScale(15),
         fontWeight:'bold',
         fontSize:24,
         color:'#262146',
-        lineHeight:32,}} >Hi {name}</Text>
-     <Image source={require('../../images/profileBackground.png')} style={{top:5,right:30,
-}}/>
-    <Image source={require('../../images/profileIcon.png')} style={{right:65,top:15,
-}}/>
-  <Pressable onPress={
+        }} >Hi {name}</Text>
+<Pressable onPress={
     ()=>
     {
       navigation.navigate('Profile');
     }
   }>
   <Text style={{
-          fontFamily:'Roboto',
-        width:343,
-        height:32,
+        fontFamily:'Roboto',
+        width:widthScale(343),
+        height:heightScale(19),
         fontSize:14,
-        right:420,
-        top:40,
+        fontWeight:'400',
+        marginLeft:widthScale(16),
         color:'#575565',
-        lineHeight:32,}} >edit my profile</Text>
-        </Pressable>
-        </View>
-           <Pressable  style={{flexDirection:'row'}} onPress={()=>
-        {
-          navigation.navigate('Terms');
-        
         }} >
-           <Image source={require('../../images/settingIcon.png')} style={{marginLeft:20,marginRight:20,top:15}}/>
-  
-        <Text style={{
-          fontFamily:'Roboto',
-        width:264,
-        height:32,
-        fontSize:16,
-        color:'#262146',
-        top:10,
-        lineHeight:32,}} >Settings</Text>
-  
+          edit my profile
+          </Text>
+  </Pressable>
+
+</View>
+     <Image source={require('../../images/profileBackground.png')} style={{}}/>
+    <Image source={require('../../images/profileIcon.png')} style={{right:36}}/>
+        </View>
+  <View>
+      <Pressable  style={{flexDirection:'row'}} onPress={()=>
+        {
+          navigation.navigate('Settings');
+        }} >
+           <Image source={require('../../images/settingIcon.png')} style={{marginLeft:widthScale(16),marginTop:heightScale(22.5)}}/>
+        <View>
+              <Text style={{
+            fontFamily:'Roboto',
+              width:widthScale(264),
+              fontSize:16,
+              color:'#262146',
+              marginTop:heightScale(16),
+              marginLeft:widthScale(8),
+              lineHeight:32,}} >Settings</Text>
+      </View>
       </Pressable>
       <Image source={require('../../images/Line2.png')} style={{marginLeft:20,marginRight:20,width:335,marginTop:15}}/>
   
@@ -135,6 +144,7 @@ function MyProfile() {
         lineHeight:32,}} 
         >Logout</Text>
       </Pressable>
+      </View>
       </View>
   
   

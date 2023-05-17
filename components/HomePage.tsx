@@ -28,12 +28,12 @@ export default function Home() {
     }
   )
   return (
-      <Tab.Navigator  tabBarOptions={{
-        activeTintColor: 'white',
-        activeBackgroundColor: '#262160',
-        inactiveBackgroundColor: '#262146',
-            style: {
-                  backgroundColor: 'white',
+      <Tab.Navigator  screenOptions={{
+        tabBarActiveTintColor: '#262160',
+        tabBarInactiveTintColor: '#262146',
+        tabBarShowLabel: false,
+        tabBarStyle: {
+                  backgroundColor: '#262160',
                   paddingBottom: 3
             }
      }}>
