@@ -7,7 +7,12 @@ import {
   Image,StyleSheet,TextInput,Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
-
+const { width, height } = Dimensions.get('window');
+const guidelineBaseWidth = 375;
+const guidelineBaseHeight = 667;
+const widthScale = (size:number) => (width / guidelineBaseWidth) * size;
+const heightScale = (size:number) => (height / guidelineBaseHeight) * size;
+const moderateScale = (size:number, factor = 0.5) => size + (widthScale(size) - size) * factor;
 function Profile() {
     const navigation=useNavigation<any>();
     const dispatch = useDispatch()
@@ -25,24 +30,23 @@ function Profile() {
     )
     return (  
       <View style={{ flex: 1,backgroundColor:'white', }}>
+    <View style={{flexDirection:'row'}}>
     <Text style={{
         fontFamily:'Roboto',
-        width:343,
-        height:32,
-        marginLeft:16,
-        marginTop:15,
+        marginLeft:widthScale(16),
+        marginTop:heightScale(15),
         fontWeight:'bold',
         fontSize:24,
         color:'#262146',
         lineHeight:32,}} >My profile</Text>
-          <Pressable style={styles.editProfile} onPress={()=>{
+      <Pressable style={styles.editProfile} onPress={()=>{
             navigation.navigate('Edit2');
           }}>
           <Text>Edit profile</Text>
         </Pressable>
-        <Image source={require('../images/profileBackground.png')} style={{position:'absolute',right:140,top:100,width:101,height:101,}}/>
-        <Image source={require('../images/profileIcon.png')} style={{position:'absolute',right:169,top:122,width:44,height:47}}/>  
-      
+    </View>
+        <Image source={require('../images/profileBackground.png')} style={{marginLeft:widthScale(139),marginTop:heightScale(60),width:101,height:101,}}/>
+        <Image source={require('../images/profileIcon.png')} style={{position:'absolute',marginLeft:widthScale(165),marginTop:heightScale(125),width:44,height:47}}/>  
         <Text style={styles.name}>Name </Text>
         <View style={styles.textInputBackground}>
             <Text>{name}</Text>
@@ -57,9 +61,7 @@ function Profile() {
   
     );
   }
-  const styles = StyleSheet.create({editProfile:{
-position:'absolute',
-top:20,right:26,fontSize:12,fontWeight:700,color:'#5A5A89',backgroundColor:'#E5E5E5'
+  const styles = StyleSheet.create({editProfile:{marginLeft:widthScale(150),marginTop:heightScale(20),fontSize:12,fontWeight:'700',color:'#5A5A89',backgroundColor:'#E5E5E5'
   },
   name:
   {
@@ -67,12 +69,11 @@ top:20,right:26,fontSize:12,fontWeight:700,color:'#5A5A89',backgroundColor:'#E5E
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: 14,
-    lineHeight: 32,
+    lineHeight: heightScale(32),
     color:'#262146',
-    width:93,
-    height:28,
-    marginTop:190,
-    marginLeft:20,
+    height:heightScale(28),
+    marginLeft:widthScale(20),
+    marginTop:heightScale(20),
   },
     textInputBackground:
   {

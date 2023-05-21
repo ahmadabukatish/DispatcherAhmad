@@ -44,8 +44,6 @@ function MyProfile() {
       <View style={{flex:1}}>
       <Text style={{
         fontFamily:'Roboto',
-        width:widthScale(343),
-        height:heightScale(32),
         marginLeft:widthScale(16),
         marginTop:heightScale(15),
         fontWeight:'bold',
@@ -60,8 +58,6 @@ function MyProfile() {
   }>
   <Text style={{
         fontFamily:'Roboto',
-        width:widthScale(343),
-        height:heightScale(19),
         fontSize:14,
         fontWeight:'400',
         marginLeft:widthScale(16),
@@ -84,13 +80,12 @@ function MyProfile() {
         <View>
               <Text style={{
             fontFamily:'Roboto',
-              width:widthScale(264),
               fontSize:16,
               color:'#262146',
               marginTop:heightScale(16),
               marginLeft:widthScale(8),
               lineHeight:32,}} >Settings</Text>
-      </View>
+          </View>
       </Pressable>
       <Image source={require('../../images/Line2.png')} style={{marginLeft:20,marginRight:20,width:335,marginTop:15}}/>
   
@@ -99,20 +94,19 @@ function MyProfile() {
           navigation.navigate('Terms');
         
         }}>
-      <Image source={require('../../images/termsIcon.png')} style={{marginLeft:20,marginRight:20,marginTop:8}}/>
-  
-        <Text 
-        style={{fontFamily:'Roboto',
-        width:264,
-        height:32,
-        fontSize:16,
-        color:'#262146',
-        lineHeight:32,}} 
-        >Terms & privacy</Text>
-  
+        <Image source={require('../../images/termsIcon.png')} style={{marginLeft:widthScale(16),marginTop:heightScale(8)}}/>
+          <View>
+            <Text 
+            style={{fontFamily:'Roboto',
+            fontSize:16,
+            color:'#262146',
+            marginLeft:widthScale(8),
+            lineHeight:32,}} 
+            >Terms & privacy
+          </Text>
+         </View>
       </Pressable>
       <Image source={require('../../images/Line2.png')} style={{marginLeft:20,marginRight:20,width:335,marginTop:8}}/>
-  
       <Pressable style={{flexDirection:'row'}} onPress={()=>
         {
           try{
@@ -133,21 +127,21 @@ function MyProfile() {
             }
           };
         }}>
-        <Image source={require('../../images/logoutIcon1.png')} style={{marginLeft:20,marginRight:20,marginTop:8}}/>
-        <Image source={require('../../images/logoutIcon2.png')} style={{position:'absolute',marginLeft:28,marginRight:20,marginTop:13}}/>
-        <Text 
-        style={{fontFamily:'Roboto',
-        width:264,
-        height:32,
-        fontSize:16,
-        color:'#262146',
-        lineHeight:32,}} 
-        >Logout</Text>
+        <Image source={require('../../images/logoutIcon1.png')} style={{marginLeft:widthScale(16),marginTop:heightScale(8)}}/>
+        <Image source={require('../../images/logoutIcon2.png')} style={{marginTop:heightScale(12)}}/>
+          <View>
+            <Text 
+            style={{fontFamily:'Roboto',
+            fontSize:16,
+            color:'#262146',
+            lineHeight:32,
+            marginLeft:widthScale(8),
+          }} 
+            >Logout</Text>
+        </View>
       </Pressable>
       </View>
       </View>
-  
-  
     );
   }
   
@@ -157,13 +151,11 @@ function MyProfile() {
   const ProfileScreen=()=>{
     return (
       <Stack1.Navigator>
-  
-      <Stack1.Screen name={'MainProfile'} component={MyProfile} />
-      <Stack1.Screen name={'Profile'} component={Profile} />
-      <Stack1.Screen name={'Edit2'} component={EditProf2} />
-      <Stack1.Screen name={'Terms'} component={Terms} />
-      <Stack1.Screen name={'Settings'} component={Settings} />
-
+        <Stack1.Screen name={'MainProfile'} component={MyProfile} />
+        <Stack1.Screen name={'Profile'} component={Profile} />
+        <Stack1.Screen name={'Edit2'} component={EditProf2} />
+        <Stack1.Screen name={'Terms'} component={Terms} />
+        <Stack1.Screen name={'Settings'} component={Settings} />
       </Stack1.Navigator>
     
     );

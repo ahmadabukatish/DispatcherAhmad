@@ -101,7 +101,9 @@ const Sign1=()=>{
           <Text style={{color:'white'}}>SIGNUP</Text>
           <Image source={require('../images/Stroke2.png')} style={{marginLeft:3,width:16,height:12}}/>
         </Pressable>
-        <Pressable style={styles.loginButtun}>
+        <Pressable style={styles.loginButtun} onPress={
+          ()=>{navigation.navigate('SignIn');}
+        }>
           <Text>LOGIN</Text>
         </Pressable>
      </View>
