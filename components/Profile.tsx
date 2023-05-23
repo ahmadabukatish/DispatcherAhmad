@@ -4,9 +4,13 @@ import {
   Text,
   View,
   Pressable,
-  Image,StyleSheet,TextInput,Dimensions
+  Image,StyleSheet,Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
+import ProfileIcon from '../images/ProfileIcon.svg'
+import ProfileBackgroundIcon from '../images/profileBackground.svg'
+
+
 const { width, height } = Dimensions.get('window');
 const guidelineBaseWidth = 375;
 const guidelineBaseHeight = 667;
@@ -30,6 +34,13 @@ function Profile() {
     )
     return (  
       <View style={{ flex: 1,backgroundColor:'white', }}>
+        <Pressable style={{flexDirection:'row',width:'100%',height:55,backgroundColor:'#262146' }} onPress={()=>
+            {
+                navigation.navigate('MainProfile');
+            }}>
+        <Image source={require('../images/ForwardIcon.png')} style={{marginTop:15,}}/>
+        <Text style={{color:'white',marginTop:15,fontSize:16}}> Back</Text>
+        </Pressable>
     <View style={{flexDirection:'row'}}>
     <Text style={{
         fontFamily:'Roboto',
@@ -45,13 +56,12 @@ function Profile() {
           <Text>Edit profile</Text>
         </Pressable>
     </View>
-        <Image source={require('../images/profileBackground.png')} style={{marginLeft:widthScale(139),marginTop:heightScale(60),width:101,height:101,}}/>
-        <Image source={require('../images/profileIcon.png')} style={{position:'absolute',marginLeft:widthScale(165),marginTop:heightScale(125),width:44,height:47}}/>  
+        <ProfileBackgroundIcon width='101' height='101' style={{marginLeft:widthScale(139),marginTop:heightScale(60)}}/>
+        <ProfileIcon width='44' height='47' style={{position:'absolute',marginLeft:widthScale(170),marginTop:heightScale(175)}}/>  
         <Text style={styles.name}>Name </Text>
         <View style={styles.textInputBackground}>
             <Text>{name}</Text>
         </View>
-
         <Text style={styles.email}>Email </Text>
         <View style={styles.textInputBackground}>
             <Text style={styles.textInput}>{email}</Text>

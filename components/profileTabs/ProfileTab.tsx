@@ -14,7 +14,11 @@ import Profile from '../Profile';
 import EditProf2 from '../EditProfile2';
 import Terms from '../Terms';
 import Settings from '../Settings';
-
+import SettingIcon from '../../images/settingIcon.svg'
+import TermsIcon from '../../images/termsIcon.svg';
+import LogoutIcon1 from '../../images/logoutIcon1.svg'
+import LogoutIcon2 from '../../images/logoutIcon2.svg'
+import ProfileIcon from '../../images/ProfileIcon.svg'
 
 const { width, height } = Dimensions.get('window');
 const guidelineBaseWidth = 375;
@@ -22,6 +26,7 @@ const guidelineBaseHeight = 667;
 const widthScale = (size:number) => (width / guidelineBaseWidth) * size;
 const heightScale = (size:number) => (height / guidelineBaseHeight) * size;
 const moderateScale = (size:number, factor = 0.5) => size + (widthScale(size) - size) * factor;
+
 function MyProfile() {
     const navigation=useNavigation<any>();
     const dispatch = useDispatch()
@@ -39,7 +44,6 @@ function MyProfile() {
     return (
   
       <View style={{ flex: 1 }}>
-        
       <View style={{flexDirection:'row',display:'flex',width:widthScale(375),height:heightScale(79),backgroundColor:'white',}}>
       <View style={{flex:1}}>
       <Text style={{
@@ -68,15 +72,15 @@ function MyProfile() {
   </Pressable>
 
 </View>
-     <Image source={require('../../images/profileBackground.png')} style={{}}/>
-    <Image source={require('../../images/profileIcon.png')} style={{right:36}}/>
+     <Image source={require('../../images/profileBackground.png')} style={{marginTop:15,}}/>
+      <ProfileIcon style={{right:36,marginTop:20,}}/>
         </View>
   <View>
       <Pressable  style={{flexDirection:'row'}} onPress={()=>
         {
           navigation.navigate('Settings');
         }} >
-           <Image source={require('../../images/settingIcon.png')} style={{marginLeft:widthScale(16),marginTop:heightScale(22.5)}}/>
+           <SettingIcon style={{marginLeft:widthScale(16),marginTop:heightScale(22.5)}}/>
         <View>
               <Text style={{
             fontFamily:'Roboto',
@@ -94,7 +98,7 @@ function MyProfile() {
           navigation.navigate('Terms');
         
         }}>
-        <Image source={require('../../images/termsIcon.png')} style={{marginLeft:widthScale(16),marginTop:heightScale(8)}}/>
+        <TermsIcon style={{marginLeft:widthScale(16),marginTop:heightScale(8)}}/>
           <View>
             <Text 
             style={{fontFamily:'Roboto',
@@ -127,8 +131,8 @@ function MyProfile() {
             }
           };
         }}>
-        <Image source={require('../../images/logoutIcon1.png')} style={{marginLeft:widthScale(16),marginTop:heightScale(8)}}/>
-        <Image source={require('../../images/logoutIcon2.png')} style={{marginTop:heightScale(12)}}/>
+        <LogoutIcon1 style={{marginLeft:widthScale(16),marginTop:heightScale(8)}}/>
+        <LogoutIcon2 style={{marginTop:heightScale(12)}}/>
           <View>
             <Text 
             style={{fontFamily:'Roboto',

@@ -15,11 +15,15 @@ import {
   TextInput,
   Pressable,
   Image,
-  Alert,TouchableOpacity,
+  Alert,TouchableOpacity,  KeyboardAvoidingView,Platform
+
 } from 'react-native';
 import { authService } from '../firebase/AuthService';
 import { useSelector, useDispatch } from 'react-redux'
 import { login, update } from '../store/emailSlice'
+import EyeIcon from '../images/Eye.svg'
+import RectangleEye from '../images/RectangleEye.svg'
+
 
 const Sign=()=>{
   const email = useSelector((state:{email:any}) => state.email.email);
@@ -39,8 +43,10 @@ const Sign=()=>{
   )
   
   return (
+    // <KeyboardAvoidingView behavior={Platform.OS==="ios"?'padding': 'position'}>
+
     <SafeAreaView style={styles.container}>
-      
+    
     <Image source={require('../images/logo1.png')} style={{alignSelf:'center',width:126.91,height:128,marginTop:61}}/>
      <View style={styles.background}>
         <Text style={styles.logIn}>Login </Text>
@@ -53,13 +59,10 @@ const Sign=()=>{
             value={password} secureTextEntry={scurePassword}
             onChangeText={text=>setPassword(text)} />
             <TouchableOpacity onPress={()=>{setScurePassword(!scurePassword);}}>
-
-            <Image source={require('../images/Vector.png')} style={{position:'absolute',marginLeft:190,width:30,height:19,marginTop:-10,}}/>
+            <EyeIcon style={{marginLeft:190,width:30,height:19,}}/>
             {scurePassword ? (
-            <Image source={require('../images/Rectangle609.png')} style={{position:'absolute',marginLeft:190,width:30,marginTop:-10,
-            height:19}}/>):null}
+            <RectangleEye style={{marginLeft:194,width:30,marginTop:-22}}/>):null}
           </TouchableOpacity>
-
         </View>
         <Image source={require('../images/Line2.png')} style={{position:'absolute',marginLeft:20,marginRight:20,width:335,marginTop:247}}/>
 

@@ -5,6 +5,7 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
 import org.devio.rn.splashscreen.SplashScreen; 
+import com.facebook.react.modules.i18nmanager.I18nUtil;
 
 public class MainActivity extends ReactActivity {
 
@@ -20,6 +21,10 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     SplashScreen.show(this);
     super.onCreate(null);
+
+    I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
+    sharedI18nUtilInstance.forceRTL(this,false);
+    sharedI18nUtilInstance.allowRTL(this, false);
   }
   /**
    * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util class {@link

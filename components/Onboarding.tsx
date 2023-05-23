@@ -18,6 +18,11 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
+import Rectangle1 from '../images/Rectangle1.svg'
+import Rectangle2 from '../images/Rectangle2.svg'
+import Loading1 from '../images/loading1.svg'
+import LoadingFill from '../images/loadingFill.svg'
+
 
 const styles = StyleSheet.create({
   container:
@@ -36,17 +41,28 @@ const Onboarding=()=>{
 
   const { width, height } = Dimensions.get('window');
   const navigation=useNavigation<any>();
+  useLayoutEffect(
+    ()=>{
+      navigation.setOptions(
+        {
+          headerTitle:'Onboarding',
+          headerShown:false,
+        })
+    }
+  )
   const renderItem = ({item,index}:any) => {
 
     return (
      <View>
         <SafeAreaView style={styles.container}>  
+            <Loading1 width='255' height='15' style={{position:'absolute',top:10,left:62,}}/>
+            <LoadingFill width='100' height='15' style={{position:'absolute',top:10,left:62}}/>
             <Text style={{marginLeft:100,top:95,color:'white',fontSize:32,fontWeight:'700',}}>Dispatcher</Text>
               <Text style={{color:'white',top:144,left:42,width:290,fontSize:22}}>{item.content}</Text>
-              <Image source={require('../images/Rectangle2.png')}
-                  style={{position:'absolute',width:363,height:366,transform: [{rotate: '-30deg'}],left:-20,bottom:-80}}/>
-              <Image source={require('../images/Rectangle1.png')}
-                  style={{position:'absolute',width:363,height:366,bottom:-120,left:-20,transform: [{rotate: '-30deg'}],}}/>
+              <Rectangle2 width='363' height='366'
+                  style={{position:'absolute',left:-80,bottom:-40}}/>
+              <Rectangle1 width='363' height='366'
+                  style={{position:'absolute',bottom:-40,marginLeft:-85}}/>
               <Pressable onPress={()=>{navigation.navigate('SignIn')}} style={{position:'absolute',bottom:15,}}>
               <Text >Skip</Text>
               </Pressable>
@@ -55,14 +71,15 @@ const Onboarding=()=>{
    );}
   
 return (
+  <SafeAreaView style={{backgroundColor:'#262146'}}>
   <Carousel
     data={entries}
     renderItem={renderItem}
     sliderWidth={width}
     itemWidth={height}
-    
-    
-  />
+    />
+    </SafeAreaView>
+  
 );}
 
 export default Onboarding;

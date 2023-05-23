@@ -1,19 +1,38 @@
 
+import 'react-native-gesture-handler';
 
 import React, { useLayoutEffect ,useEffect} from 'react';
 import {
   Text,
-  View,Image,StyleSheet,StatusBar,FlatList,ListRenderItemInfo,
+  View,Image,StyleSheet,StatusBar,FlatList,ListRenderItemInfo,Pressable,
 
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
 import {getPosts} from '../../store/newsSlice';
 import { ThunkDispatch } from '@reduxjs/toolkit';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { useNavigation } from '@react-navigation/native';
+
+const Drawer = createDrawerNavigator();
 
 type News={urlToImage:any,publishedAt:any,title:any,description:any}
-const HomeScreen=()=> {
+const FilterBar=()=> {
+  return null;
+}
+
+const MainHome=()=> {
     const articles=useSelector((state:{news:any})=>state.news.articles);
     const dispatch=useDispatch<ThunkDispatch<any,any,any>>();
+    const navigation=useNavigation<any>();
+    useLayoutEffect(
+      ()=>{
+        navigation.setOptions(
+          {
+            headerTitle:'MainHome',
+            headerShown:false,
+          })
+      }
+    )
     useEffect(()=>{
       dispatch(getPosts());
     },[])
@@ -40,6 +59,12 @@ const HomeScreen=()=> {
         <View style={{width:'100%',height:55,backgroundColor:'#262146' }}>
         <Image source={require('../../images/logo1.png')} style={{width:32,height:32,top:10,left:20,}}/>
         </View>
+        <View style={{flexDirection:'row',justifyContent:'space-between',width:'100%',height:55,backgroundColor:'white' }}>
+        <Text style={{color:'#5A5A89',fontWeight:'400',fontSize:16,marginTop:11,marginLeft:16,}}>Sort by</Text>
+        <Pressable onPress={()=>{navigation.openDrawer()}}>
+        <Image source={require('../../images/filterbarIcon.png')} style={{width:32,height:32,top:5,}}/>
+        </Pressable>
+        </View>
         <FlatList<News>
            data={articles}
            renderItem={renderItem}
@@ -48,6 +73,16 @@ const HomeScreen=()=> {
       </View>
     );
   }
+  const HomeScreen=()=> {
+    return (
+      <Drawer.Navigator>
+        <Drawer.Screen name="MainHome" component={MainHome} />
+        <Drawer.Screen name="FilterBar" component={FilterBar} />
+      </Drawer.Navigator>
+    );
+
+  }
+
   export default HomeScreen;
 
   const styles = StyleSheet.create({

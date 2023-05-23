@@ -14,6 +14,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FavoriteScreen from './profileTabs/FovoriteTab';
 import ProfileScreen from './profileTabs/ProfileTab';
 import HomeScreen from './profileTabs/HomeTab';
+import ProfileTabBar from '../images/profileTabBar.svg'
+import HomeTabBar from '../images/HomeTabBar.svg'
+import FavoriteTabBar from '../images/FavoriteTabbar.svg'
+import ChooseTabBar from '../images/chooseTabBar.svg'
+
 
 const Tab = createBottomTabNavigator();
 export default function Home() {
@@ -28,10 +33,10 @@ export default function Home() {
     }
   )
   return (
-      <Tab.Navigator  screenOptions={{
+      <Tab.Navigator  initialRouteName='HomeTab' screenOptions={{
         tabBarActiveTintColor: '#262160',
         tabBarInactiveTintColor: '#262146',
-        tabBarShowLabel: false,
+        tabBarShowLabel: false,headerShown:false,
         tabBarStyle: {
                   backgroundColor: '#262160',
                   paddingBottom: 3
@@ -40,33 +45,24 @@ export default function Home() {
       <Tab.Screen name="ProfileTab" component={ProfileScreen} 
          options={{
           tabBarIcon: ({ color }) => (
-            <Image
-              source={require('../images/profileTab.png')                  
-              }/>
+            <ProfileTabBar/>
          ), 
          tabBarLabel: ''             
         }}/>
         <Tab.Screen name="HomeTab" component={HomeScreen}
          options={{
           tabBarIcon: ({ color }) => (
-            <Image
-              source={require('../images/homeTab.png')                  
-              }/>
+            <HomeTabBar/>
          ), 
          tabBarLabel: ''             
         }}/>
-       
-        
          <Tab.Screen name="FavoriteTab" component={FavoriteScreen}
          options={{
           tabBarIcon: ({ color }) => (
-            <Image
-              source={require('../images/favoriteTab.png')                  
-              }/>
+            <FavoriteTabBar/>
          ), 
          tabBarLabel: ''             
         }} />
-
       </Tab.Navigator>
   );
 }
